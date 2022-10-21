@@ -1,6 +1,6 @@
 import { TrackableAPI } from "./api"
 import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from "./metadata"
-
+// @Entity('exampleComponent')
 export class TrackableEntity extends Entity {
 
     metadata: BaseTrackableMetadata

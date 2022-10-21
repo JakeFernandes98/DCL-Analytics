@@ -2,7 +2,7 @@ import * as ecs from 'decentraland-ecs'
 
 type Ecs = { self: typeof ecs }
 /**
- * Override @Component for testing purpose.
+ * Override @Entity for testing purpose.
  */
-const Component = (ecs as any as Ecs).self.Component
-;(globalThis as any).Component = Component
+const Entity = (ecs as any as Ecs).self.Entity
+;(globalThis as any).Entity = Entity

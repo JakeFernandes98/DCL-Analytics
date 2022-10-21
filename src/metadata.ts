@@ -1,16 +1,16 @@
 export interface BaseTrackableMetadata {
-    readonly parcelId: string;
-    readonly sectionId: string;
-    readonly userId: string;
-    readonly userName: string;
-    readonly userGuest: boolean;
+    readonly parcelId: string
+    readonly sectionId: string
+    readonly userId: string
+    readonly userName: string
+    readonly userGuest: boolean
 }
 
 export interface FullTrackableMetadata extends BaseTrackableMetadata {
-    readonly entityId: string;
-    readonly action: string;
-    timestamp: Date;
-    duration?: number;
+    readonly entityId: string
+    readonly action: string
+    timestamp: Date
+    duration?: number
 
 }
 
