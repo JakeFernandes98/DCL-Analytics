@@ -7,7 +7,7 @@
 <b>Signature:</b>
 
 ```typescript
-export declare function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp: Date, duration?: number): FullTrackableMetadata;
+export declare function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number): FullTrackableMetadata;
 ```
 
 ## Parameters
@@ -17,7 +17,7 @@ export declare function joinMetadata(base: BaseTrackableMetadata, entityId: stri
 |  base | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) |  |
 |  entityId | string |  |
 |  action | string |  |
-|  timestamp | Date |  |
+|  timestamp | Date | <i>(Optional)</i> |
 |  duration | number | <i>(Optional)</i> |
 
 <b>Returns:</b>

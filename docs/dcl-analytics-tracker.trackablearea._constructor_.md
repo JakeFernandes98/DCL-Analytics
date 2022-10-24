@@ -9,14 +9,19 @@ Constructs a new instance of the `TrackableArea` class
 <b>Signature:</b>
 
 ```typescript
-constructor(x: number, y: number, z: number);
+constructor(xPos: number, zPos: number, xSize: number, ySize: number, zSize: number, api: TrackableAPI, entityId: string, metadata: BaseTrackableMetadata);
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | number |  |
-|  y | number |  |
-|  z | number |  |
+|  xPos | number |  |
+|  zPos | number |  |
+|  xSize | number |  |
+|  ySize | number |  |
+|  zSize | number |  |
+|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
+|  entityId | string |  |
+|  metadata | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) |  |
 

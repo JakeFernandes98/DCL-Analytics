@@ -14,7 +14,7 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
 
 }
 
-export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp: Date, duration?: number) {
+export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number) {
     let metadata = {
        parcelId : base.parcelId,
        sectionId : base.sectionId,
@@ -26,6 +26,10 @@ export function joinMetadata(base: BaseTrackableMetadata, entityId: string, acti
        timestamp : timestamp,
     } as FullTrackableMetadata
 
+
+    if (typeof timestamp !== undefined){
+        metadata.timestamp = timestamp
+    }
 
     if (typeof duration !== undefined){
         metadata.duration = duration

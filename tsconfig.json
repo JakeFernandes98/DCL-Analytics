@@ -7,10 +7,18 @@
   ],
   "compilerOptions": {
     "module": "ESNext",
+    "allowJs": true,
+    "paths": {
+      "@dcl/ecs-scene-utils": [
+        "./node_modules/@dcl/ecs-scene-utils/dist/index.d.ts"
+      ],
+    },
     "declaration": true,
     "declarationDir": "./types",
     "declarationMap": true,
     "outDir": "dist",
+    "sourceMap": true,
+    "inlineSourceMap": false,
   },
   "extends": "./node_modules/decentraland-ecs/types/tsconfig.json"
 }

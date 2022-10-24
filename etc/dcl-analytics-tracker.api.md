@@ -34,7 +34,16 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
 }
 
 // @public (undocumented)
-export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp: Date, duration?: number): FullTrackableMetadata;
+export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number): FullTrackableMetadata;
+
+// @public (undocumented)
+export class Timer implements ISystem {
+    constructor();
+    // (undocumented)
+    timer: double;
+    // (undocumented)
+    update(dt: number): void;
+}
 
 // @public (undocumented)
 export class TrackableAPI {
@@ -47,7 +56,30 @@ export class TrackableAPI {
 
 // @public (undocumented)
 export class TrackableArea extends Entity {
-    constructor(x: number, y: number, z: number);
+    constructor(xPos: number, zPos: number, xSize: number, ySize: number, zSize: number, api: TrackableAPI, entityId: string, metadata: BaseTrackableMetadata);
+    // (undocumented)
+    api: TrackableAPI;
+    // (undocumented)
+    entityId: string;
+    // (undocumented)
+    metadata: BaseTrackableMetadata;
+    // (undocumented)
+    triggerEnterAPI(api: TrackableAPI, start: Date): void;
+    // (undocumented)
+    triggerExitAPI(api: TrackableAPI, start: Date, duration: double): void;
+}
+
+// @public (undocumented)
+export class TrackableCamera {
+    constructor(api: TrackableAPI);
+    addEntity(entity: Entity, tag: BaseTrackableMetadata, entityId: string): void;
+    // (undocumented)
+    entities: {};
+    // Warning: (ae-forgotten-export) The symbol "RaycastingSystem" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    raySystem: RaycastingSystem;
+    removeEntity(entity: Entity): void;
 }
 
 // @public (undocumented)

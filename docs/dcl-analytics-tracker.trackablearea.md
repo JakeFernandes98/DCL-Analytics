@@ -15,5 +15,20 @@ export declare class TrackableArea extends Entity
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(x, y, z)](./dcl-analytics-tracker.trackablearea._constructor_.md) |  | Constructs a new instance of the <code>TrackableArea</code> class |
+|  [(constructor)(xPos, zPos, xSize, ySize, zSize, api, entityId, metadata)](./dcl-analytics-tracker.trackablearea._constructor_.md) |  | Constructs a new instance of the <code>TrackableArea</code> class |
+
+## Properties
+
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [api](./dcl-analytics-tracker.trackablearea.api.md) |  | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
+|  [entityId](./dcl-analytics-tracker.trackablearea.entityid.md) |  | string |  |
+|  [metadata](./dcl-analytics-tracker.trackablearea.metadata.md) |  | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) |  |
+
+## Methods
+
+|  Method | Modifiers | Description |
+|  --- | --- | --- |
+|  [triggerEnterAPI(api, start)](./dcl-analytics-tracker.trackablearea.triggerenterapi.md) |  |  |
+|  [triggerExitAPI(api, start, duration)](./dcl-analytics-tracker.trackablearea.triggerexitapi.md) |  |  |
 

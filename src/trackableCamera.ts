@@ -1,0 +1,103 @@
+import { TrackableAPI } from "./api";
+import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from "./metadata";
+
+export class TrackableCamera {
+
+    entities: {}
+    raySystem: RaycastingSystem
+
+
+    /**
+     * Allows you track when the user is looking at a specific entity
+     *
+     * @param api - A defined API
+     * @public
+     */
+    constructor(api: TrackableAPI){
+        this.entities = {}
+        this.raySystem = new RaycastingSystem(api)
+        engine.addSystem(this.raySystem)
+    }
+
+    /**
+     * Allows you to add an entity that you want to track
+     *
+     * @param entity - the entity you want to track
+     * @param tag - metadata.
+     * @param entityId - Unique identitifier for the entity
+     * @public
+     */
+    addEntity(entity:Entity, tag: BaseTrackableMetadata, entityId: string){
+        this.raySystem.addEntity(entity,tag,entityId)
+    }
+
+    /**
+     * Removes an entity from being tracked
+     *
+     * @param entity - the entity you don't want to track anymore
+     * @public
+     */
+    removeEntity(entity:Entity){
+        this.raySystem.removeEntity(entity)
+    }
+
+}
+
+class RaycastingSystem implements ISystem {
+
+    entities: {}
+    entitiesCount: {}
+    api: TrackableAPI
+
+    constructor(api: TrackableAPI){
+        this.api = api
+        this.entitiesCount = {}
+        for (let obj of Object.keys(this.entities)){
+            this.entitiesCount[obj] = 0
+        }
+
+    }
+
+    addEntity(entity:Entity, tag: BaseTrackableMetadata, entityId: string){
+        let metadata: FullTrackableMetadata = joinMetadata(tag, entityId, "VIEW")
+        this.entities[entity.uuid] = metadata
+        this.entitiesCount[entity.uuid] = metadata
+    }
+
+    removeEntity(entity:Entity){
+        delete this.entities[entity.uuid]
+        delete this.entitiesCount[entity.uuid]
+    }
+
+    update(dt: number){
+        let ray: Ray = PhysicsCast.instance.getRayFromCamera(30)
+  
+        PhysicsCast.instance.hitAll(
+            ray,
+            (e) => {
+                if (e.didHit){
+                    for (let ent of e.entities){
+                        if (this.entities.hasOwnProperty(ent.entity.entityId)){
+                            this.entitiesCount[ent.entity.entityId] = this.entitiesCount[ent.entity.entityId] + dt
+                        }
+                    }
+                } else {
+                    this.sendAPI()
+                }
+            }
+        )
+    }
+
+    sendAPI(){
+        for (let obj of Object.keys(this.entities)){
+            let metadata = this.entities[obj]
+            let count = this.entitiesCount[obj]
+            if (count != 0){
+                metadata["timestamp"] = new Date()
+                metadata["duration"] = count
+                this.api.req(metadata)
+                this.entitiesCount[obj] = 0
+            }
+        }
+    }
+}

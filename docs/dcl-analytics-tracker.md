@@ -8,8 +8,10 @@
 
 |  Class | Description |
 |  --- | --- |
+|  [Timer](./dcl-analytics-tracker.timer.md) |  |
 |  [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
 |  [TrackableArea](./dcl-analytics-tracker.trackablearea.md) |  |
+|  [TrackableCamera](./dcl-analytics-tracker.trackablecamera.md) |  |
 |  [TrackableEntity](./dcl-analytics-tracker.trackableentity.md) |  |
 
 ## Functions
