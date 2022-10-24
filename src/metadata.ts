@@ -1,3 +1,5 @@
+import { getUserData } from "@decentraland/Identity"
+
 export interface BaseTrackableMetadata {
     readonly parcelId: string
     readonly sectionId: string
@@ -14,6 +16,42 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
 
 }
 
+/**
+ * Generates a BaseTrackableMetadata object based on the parcelId and sectionId provided
+ * and deals with sourcing player info internally
+ * 
+ * @param parcelId - Unique Identifier for the parcel
+ * @param sectionId - Unique Identifier for the section of the experience
+ * @returns BaseTrackableMetadata with all fields filled in
+ * @public
+ */
+export function generateMetadata(parcelId:string, sectionId:string) {
+    let playerInfo
+    executeTask(async () => {
+        playerInfo = await getUserData()
+    })
+    let isUserGuest = !(playerInfo.hasConnectedWeb3)
+    let metadata: BaseTrackableMetadata = {
+        parcelId: parcelId,
+        sectionId: sectionId,
+        userId: isUserGuest ? playerInfo.userId : playerInfo.publicKey,
+        userName: playerInfo.displayName,
+        userGuest: isUserGuest
+    }
+
+    return metadata
+
+}
+
+/**
+ * Allows you to create a FullTrackableMetadata object from a BaseTrackableMetadata object
+ * and the extra fields.
+ * 
+ * @param parcelId - Unique Identifier for the parcel
+ * @param sectionId - Unique Identifier for the section of the experience
+ * @returns BaseTrackableMetadata with all fields filled in
+ * @public
+ */
 export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number) {
     let metadata = {
        parcelId : base.parcelId,
