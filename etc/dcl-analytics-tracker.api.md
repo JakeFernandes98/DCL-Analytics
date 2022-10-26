@@ -34,9 +34,6 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
 }
 
 // @public
-export function generateMetadata(parcelId: string, sectionId: string): BaseTrackableMetadata;
-
-// @public
 export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number): FullTrackableMetadata;
 
 // @public (undocumented)

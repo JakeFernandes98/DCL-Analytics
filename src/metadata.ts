@@ -1,4 +1,4 @@
-import { getUserData } from "@decentraland/Identity"
+// import { getUserData } from "@decentraland/Identity"
 
 export interface BaseTrackableMetadata {
     readonly parcelId: string
@@ -25,23 +25,23 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
  * @returns BaseTrackableMetadata with all fields filled in
  * @public
  */
-export function generateMetadata(parcelId:string, sectionId:string) {
-    let playerInfo
-    executeTask(async () => {
-        playerInfo = await getUserData()
-    })
-    let isUserGuest = !(playerInfo.hasConnectedWeb3)
-    let metadata: BaseTrackableMetadata = {
-        parcelId: parcelId,
-        sectionId: sectionId,
-        userId: isUserGuest ? playerInfo.userId : playerInfo.publicKey,
-        userName: playerInfo.displayName,
-        userGuest: isUserGuest
-    }
+// export function generateMetadata(parcelId:string, sectionId:string) {
+//     let playerInfo
+//     executeTask(async () => {
+//         playerInfo = await getUserData()
+//     })
+//     let isUserGuest = !(playerInfo.hasConnectedWeb3)
+//     let metadata: BaseTrackableMetadata = {
+//         parcelId: parcelId,
+//         sectionId: sectionId,
+//         userId: isUserGuest ? playerInfo.userId : playerInfo.publicKey,
+//         userName: playerInfo.displayName,
+//         userGuest: isUserGuest
+//     }
 
-    return metadata
+//     return metadata
 
-}
+// }
 
 /**
  * Allows you to create a FullTrackableMetadata object from a BaseTrackableMetadata object
