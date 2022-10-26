@@ -15,7 +15,7 @@ export declare class TrackableEntity extends Entity
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(metadata, entityId)](./dcl-analytics-tracker.trackableentity._constructor_.md) |  | Constructs a new instance of the <code>TrackableEntity</code> class |
+|  [(constructor)(metadata, entityId)](./dcl-analytics-tracker.trackableentity._constructor_.md) |  | Creates an Entity, from where clicks can be tracked via the enableTracking method |
 
 ## Properties
 
@@ -28,5 +28,5 @@ export declare class TrackableEntity extends Entity
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [enableTracking(api)](./dcl-analytics-tracker.trackableentity.enabletracking.md) |  |  |
+|  [enableTracking(api)](./dcl-analytics-tracker.trackableentity.enabletracking.md) |  | Allows clicks to be tracked. Method must be called within the event handler component (e.g. OnPointerUp, OnPointerDown) |
 

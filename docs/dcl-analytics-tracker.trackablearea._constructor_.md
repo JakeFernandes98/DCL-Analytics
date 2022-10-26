@@ -4,7 +4,7 @@
 
 ## TrackableArea.(constructor)
 
-Constructs a new instance of the `TrackableArea` class
+Allows you to track users entering the area, and how long they are spending within the area
 
 <b>Signature:</b>
 
@@ -16,12 +16,12 @@ constructor(xPos: number, zPos: number, xSize: number, ySize: number, zSize: num
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  xPos | number |  |
-|  zPos | number |  |
-|  xSize | number |  |
-|  ySize | number |  |
-|  zSize | number |  |
-|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
-|  entityId | string |  |
-|  metadata | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) |  |
+|  xPos | number | X Coordinate for where the centre of the area is |
+|  zPos | number | Z Coordinate for where the centre of the area is |
+|  xSize | number | length of the area |
+|  ySize | number | height of the area |
+|  zSize | number | width of the area |
+|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) | A defined API |
+|  entityId | string | Unique identitifier for the entity |
+|  metadata | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) | metadata |
 

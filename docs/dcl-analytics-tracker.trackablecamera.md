@@ -20,7 +20,6 @@ export declare class TrackableCamera
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [entities](./dcl-analytics-tracker.trackablecamera.entities.md) |  | {} |  |
 |  [raySystem](./dcl-analytics-tracker.trackablecamera.raysystem.md) |  | RaycastingSystem |  |
 
 ## Methods

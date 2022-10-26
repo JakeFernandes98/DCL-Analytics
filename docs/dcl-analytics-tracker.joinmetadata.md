@@ -4,6 +4,8 @@
 
 ## joinMetadata() function
 
+Allows you to create a FullTrackableMetadata object from a BaseTrackableMetadata object and the extra fields.
+
 <b>Signature:</b>
 
 ```typescript
@@ -23,4 +25,6 @@ export declare function joinMetadata(base: BaseTrackableMetadata, entityId: stri
 <b>Returns:</b>
 
 [FullTrackableMetadata](./dcl-analytics-tracker.fulltrackablemetadata.md)
+
+BaseTrackableMetadata with all fields filled in
 

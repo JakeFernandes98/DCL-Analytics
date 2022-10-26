@@ -4,6 +4,8 @@
 
 ## TrackableEntity.enableTracking() method
 
+Allows clicks to be tracked. Method must be called within the event handler component (e.g. OnPointerUp, OnPointerDown)
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,7 +16,7 @@ enableTracking(api: TrackableAPI): void;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
+|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) | A defined API |
 
 <b>Returns:</b>
 

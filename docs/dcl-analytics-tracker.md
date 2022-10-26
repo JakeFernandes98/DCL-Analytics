@@ -18,7 +18,8 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [joinMetadata(base, entityId, action, timestamp, duration)](./dcl-analytics-tracker.joinmetadata.md) |  |
+|  [generateMetadata(parcelId, sectionId)](./dcl-analytics-tracker.generatemetadata.md) | Generates a BaseTrackableMetadata object based on the parcelId and sectionId provided and deals with sourcing player info internally |
+|  [joinMetadata(base, entityId, action, timestamp, duration)](./dcl-analytics-tracker.joinmetadata.md) | Allows you to create a FullTrackableMetadata object from a BaseTrackableMetadata object and the extra fields. |
 
 ## Interfaces
 

@@ -33,7 +33,10 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
     timestamp: Date;
 }
 
-// @public (undocumented)
+// @public
+export function generateMetadata(parcelId: string, sectionId: string): BaseTrackableMetadata;
+
+// @public
 export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number): FullTrackableMetadata;
 
 // @public (undocumented)
@@ -63,18 +66,12 @@ export class TrackableArea extends Entity {
     entityId: string;
     // (undocumented)
     metadata: BaseTrackableMetadata;
-    // (undocumented)
-    triggerEnterAPI(api: TrackableAPI, start: Date): void;
-    // (undocumented)
-    triggerExitAPI(api: TrackableAPI, start: Date, duration: double): void;
 }
 
 // @public (undocumented)
 export class TrackableCamera {
     constructor(api: TrackableAPI);
     addEntity(entity: Entity, tag: BaseTrackableMetadata, entityId: string): void;
-    // (undocumented)
-    entities: {};
     // Warning: (ae-forgotten-export) The symbol "RaycastingSystem" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
@@ -85,7 +82,6 @@ export class TrackableCamera {
 // @public (undocumented)
 export class TrackableEntity extends Entity {
     constructor(metadata: BaseTrackableMetadata, entityId: string);
-    // (undocumented)
     enableTracking(api: TrackableAPI): void;
     // (undocumented)
     entityId: string;

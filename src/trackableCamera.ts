@@ -3,7 +3,6 @@ import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from "./me
 
 export class TrackableCamera {
 
-    entities: {}
     raySystem: RaycastingSystem
 
 
@@ -14,7 +13,6 @@ export class TrackableCamera {
      * @public
      */
     constructor(api: TrackableAPI){
-        this.entities = {}
         this.raySystem = new RaycastingSystem(api)
         engine.addSystem(this.raySystem)
     }
@@ -51,17 +49,14 @@ class RaycastingSystem implements ISystem {
 
     constructor(api: TrackableAPI){
         this.api = api
+        this.entities = {}
         this.entitiesCount = {}
-        for (let obj of Object.keys(this.entities)){
-            this.entitiesCount[obj] = 0
-        }
-
     }
 
     addEntity(entity:Entity, tag: BaseTrackableMetadata, entityId: string){
         let metadata: FullTrackableMetadata = joinMetadata(tag, entityId, "VIEW")
         this.entities[entity.uuid] = metadata
-        this.entitiesCount[entity.uuid] = metadata
+        this.entitiesCount[entity.uuid] = 0
     }
 
     removeEntity(entity:Entity){
@@ -77,8 +72,9 @@ class RaycastingSystem implements ISystem {
             (e) => {
                 if (e.didHit){
                     for (let ent of e.entities){
-                        if (this.entities.hasOwnProperty(ent.entity.entityId)){
-                            this.entitiesCount[ent.entity.entityId] = this.entitiesCount[ent.entity.entityId] + dt
+                        let entityuuid:string = ent.entity.entityId.charAt(0) + String.fromCharCode(ent.entity.entityId.charCodeAt(1)-3)
+                        if (this.entities.hasOwnProperty(entityuuid)){
+                            this.entitiesCount[entityuuid] = this.entitiesCount[entityuuid] + dt
                         }
                     }
                 } else {
