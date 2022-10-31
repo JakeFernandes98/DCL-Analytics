@@ -14,7 +14,7 @@ export declare class TrackableCamera
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(api)](./dcl-analytics-tracker.trackablecamera._constructor_.md) |  | Allows you track when the user is looking at a specific entity |
+|  [(constructor)(api)](./dcl-analytics-tracker.trackablecamera._constructor_.md) |  | Constructs a new instance of the <code>TrackableCamera</code> class |
 
 ## Properties
 

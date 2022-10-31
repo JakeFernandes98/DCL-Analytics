@@ -8,11 +8,12 @@
 
 |  Class | Description |
 |  --- | --- |
+|  [AdobeTarget](./dcl-analytics-tracker.adobetarget.md) |  |
 |  [Timer](./dcl-analytics-tracker.timer.md) |  |
 |  [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
-|  [TrackableArea](./dcl-analytics-tracker.trackablearea.md) |  |
+|  [TrackableArea](./dcl-analytics-tracker.trackablearea.md) | Allows you to track users entering the area, and how long they are spending within the area |
 |  [TrackableCamera](./dcl-analytics-tracker.trackablecamera.md) |  |
-|  [TrackableEntity](./dcl-analytics-tracker.trackableentity.md) |  |
+|  [TrackableEntity](./dcl-analytics-tracker.trackableentity.md) | Creates an Entity, from where clicks can be tracked via the enableTracking method |
 
 ## Functions
 

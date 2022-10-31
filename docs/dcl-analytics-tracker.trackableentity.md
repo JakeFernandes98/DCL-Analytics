@@ -4,6 +4,8 @@
 
 ## TrackableEntity class
 
+Creates an Entity, from where clicks can be tracked via the enableTracking method
+
 <b>Signature:</b>
 
 ```typescript
@@ -15,7 +17,7 @@ export declare class TrackableEntity extends Entity
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(metadata, entityId)](./dcl-analytics-tracker.trackableentity._constructor_.md) |  | Creates an Entity, from where clicks can be tracked via the enableTracking method |
+|  [(constructor)(metadata, entityId)](./dcl-analytics-tracker.trackableentity._constructor_.md) |  | Constructs a new instance of the <code>TrackableEntity</code> class |
 
 ## Properties
 

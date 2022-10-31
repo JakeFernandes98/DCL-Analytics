@@ -4,6 +4,8 @@
 
 ## TrackableArea class
 
+Allows you to track users entering the area, and how long they are spending within the area
+
 <b>Signature:</b>
 
 ```typescript
@@ -15,7 +17,7 @@ export declare class TrackableArea extends Entity
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(xPos, zPos, xSize, ySize, zSize, api, entityId, metadata)](./dcl-analytics-tracker.trackablearea._constructor_.md) |  | Allows you to track users entering the area, and how long they are spending within the area |
+|  [(constructor)(xPos, zPos, xSize, ySize, zSize, api, entityId, metadata)](./dcl-analytics-tracker.trackablearea._constructor_.md) |  | Constructs a new instance of the <code>TrackableArea</code> class |
 
 ## Properties
 

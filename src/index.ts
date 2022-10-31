@@ -4,7 +4,8 @@ import { TrackableEntity } from "./trackableEntity"
 import { TrackableArea } from "./trackableArea"
 import { Timer } from "./utils"
 import { TrackableCamera } from "./trackableCamera"
+import { AdobeTarget } from "./adobeTarget"
 
 export {
-  TrackableAPI, BaseTrackableMetadata, FullTrackableMetadata, joinMetadata, TrackableEntity, TrackableArea, Timer, TrackableCamera
+  AdobeTarget, TrackableAPI, BaseTrackableMetadata, FullTrackableMetadata, joinMetadata, TrackableEntity, TrackableArea, Timer, TrackableCamera
 }

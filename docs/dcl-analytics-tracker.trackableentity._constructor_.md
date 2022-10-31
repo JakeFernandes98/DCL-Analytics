@@ -4,7 +4,7 @@
 
 ## TrackableEntity.(constructor)
 
-Creates an Entity, from where clicks can be tracked via the enableTracking method
+Constructs a new instance of the `TrackableEntity` class
 
 <b>Signature:</b>
 
@@ -16,6 +16,6 @@ constructor(metadata: BaseTrackableMetadata, entityId: string);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  metadata | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) | metadata |
-|  entityId | string | Unique identitifier for the entity |
+|  metadata | [BaseTrackableMetadata](./dcl-analytics-tracker.basetrackablemetadata.md) |  |
+|  entityId | string |  |
 

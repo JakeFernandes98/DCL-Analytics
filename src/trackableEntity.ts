@@ -1,20 +1,22 @@
 import { TrackableAPI } from "./api"
 import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from "./metadata"
 // @Entity('exampleComponent')
+
+/**
+ * Creates an Entity, from where clicks can be tracked via the enableTracking method
+ *
+ * @param metadata - metadata
+ * @param entityId - Unique identitifier for the entity
+ * @returns a new Entity
+ * @public
+ */
 export class TrackableEntity extends Entity {
 
     metadata: BaseTrackableMetadata
     entityId: string
 
 
-    /**
-     * Creates an Entity, from where clicks can be tracked via the enableTracking method
-     *
-     * @param metadata - metadata
-     * @param entityId - Unique identitifier for the entity
-     * @returns a new Entity
-     * @public
-     */
+
     constructor(metadata:BaseTrackableMetadata, entityId:string){
         super()
         this.metadata = metadata

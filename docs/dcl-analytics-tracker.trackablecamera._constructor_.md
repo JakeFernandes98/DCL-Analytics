@@ -4,7 +4,7 @@
 
 ## TrackableCamera.(constructor)
 
-Allows you track when the user is looking at a specific entity
+Constructs a new instance of the `TrackableCamera` class
 
 <b>Signature:</b>
 
@@ -16,5 +16,5 @@ constructor(api: TrackableAPI);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) | A defined API |
+|  api | [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
 

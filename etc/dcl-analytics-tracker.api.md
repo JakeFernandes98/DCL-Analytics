@@ -8,6 +8,21 @@
 /// <reference types="env" />
 
 // @public (undocumented)
+export class AdobeTarget {
+    constructor(publicKey: string, client: string, sessionId: string);
+    // (undocumented)
+    client: string;
+    // (undocumented)
+    publicKey: string;
+    // (undocumented)
+    sessionId: string;
+    // Warning: (ae-forgotten-export) The symbol "Segments" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    trigger_offer(segment: Segments): void;
+}
+
+// @public (undocumented)
 export interface BaseTrackableMetadata {
     // (undocumented)
     readonly parcelId: string;
@@ -54,7 +69,7 @@ export class TrackableAPI {
     url: string;
 }
 
-// @public (undocumented)
+// @public
 export class TrackableArea extends Entity {
     constructor(xPos: number, zPos: number, xSize: number, ySize: number, zSize: number, api: TrackableAPI, entityId: string, metadata: BaseTrackableMetadata);
     // (undocumented)
@@ -76,7 +91,7 @@ export class TrackableCamera {
     removeEntity(entity: Entity): void;
 }
 
-// @public (undocumented)
+// @public
 export class TrackableEntity extends Entity {
     constructor(metadata: BaseTrackableMetadata, entityId: string);
     enableTracking(api: TrackableAPI): void;

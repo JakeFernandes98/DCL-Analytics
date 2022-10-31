@@ -6,12 +6,6 @@ export class TrackableCamera {
     raySystem: RaycastingSystem
 
 
-    /**
-     * Allows you track when the user is looking at a specific entity
-     *
-     * @param api - A defined API
-     * @public
-     */
     constructor(api: TrackableAPI){
         this.raySystem = new RaycastingSystem(api)
         engine.addSystem(this.raySystem)

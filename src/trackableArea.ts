@@ -4,25 +4,27 @@ import { TrackableAPI } from './api'
 import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from './metadata'
 import { Timer } from './utils'
 
+
+/**
+ * Allows you to track users entering the area, and how long they are spending within the area
+ *
+ * @param xPos - X Coordinate for where the centre of the area is
+ * @param zPos - Z Coordinate for where the centre of the area is
+ * @param xSize - length of the area
+ * @param ySize - height of the area
+ * @param zSize - width of the area
+ * @param api - A defined API
+ * @param metadata - metadata
+ * @param entityId - Unique identitifier for the entity
+ * @returns An invisible entity
+ * @public
+ */
 export class TrackableArea extends Entity{
     api: TrackableAPI
     entityId: string
     metadata: BaseTrackableMetadata
 
-    /**
-     * Allows you to track users entering the area, and how long they are spending within the area
-     *
-     * @param xPos - X Coordinate for where the centre of the area is
-     * @param zPos - Z Coordinate for where the centre of the area is
-     * @param xSize - length of the area
-     * @param ySize - height of the area
-     * @param zSize - width of the area
-     * @param api - A defined API
-     * @param metadata - metadata
-     * @param entityId - Unique identitifier for the entity
-     * @returns An invisible entity
-     * @public
-     */
+
     constructor(xPos: number, zPos: number, xSize:number, ySize: number, zSize: number, api: TrackableAPI, entityId: string, metadata: BaseTrackableMetadata){
         super()
 
