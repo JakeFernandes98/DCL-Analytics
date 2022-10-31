@@ -10,7 +10,7 @@ export class AdobeTarget {
         this.sessionId = sessionId
     }
 
-    trigger_offer(segment: Segments){
+    trigger_offer(segment: string){
         let url = 'https://unileverapac.tt.omtrdc.net/rest/v1/delivery?client='+this.client+'&sessionId='+this.sessionId
 
         let body: DeliveryBody = {

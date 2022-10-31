@@ -13,12 +13,12 @@ export class TrackableAPI {
             let json
             try{
                 let body = metadata
-                // let response = await fetch(this.url, {
-                //     headers: { "Content-Type": "application/json" },
-                //     method: "POST",
-                //     body: JSON.stringify(body),
-                //   })
-                // json = await response.json()
+                let response = await fetch(this.url, {
+                    headers: { "Content-Type": "application/json" },
+                    method: "POST",
+                    body: JSON.stringify(body),
+                  })
+                json = await response.json()
                 log(this.url, body)
             } catch {
                   log("failed to reach URL")
