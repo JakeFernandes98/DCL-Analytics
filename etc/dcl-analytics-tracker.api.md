@@ -16,10 +16,8 @@ export class AdobeTarget {
     publicKey: string;
     // (undocumented)
     sessionId: string;
-    // Warning: (ae-forgotten-export) The symbol "Segments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    trigger_offer(segment: Segments): void;
+    trigger_offer(segment: string): Promise<any>;
 }
 
 // @public (undocumented)

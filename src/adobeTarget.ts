@@ -10,7 +10,7 @@ export class AdobeTarget {
         this.sessionId = sessionId
     }
 
-    trigger_offer(segment: string){
+    async trigger_offer(segment: string){
         let url = 'https://unileverapac.tt.omtrdc.net/rest/v1/delivery?client='+this.client+'&sessionId='+this.sessionId
 
         let body: DeliveryBody = {
@@ -36,18 +36,18 @@ export class AdobeTarget {
 
         }
 
-        executeTask(async () => {
-            let response = await fetch(url,{
-                method: 'POST',
-                headers: {
+    
+        let response = await fetch(url,{
+            method: 'POST',
+            headers: {
 
-                },
-                body : JSON.stringify(body)
-            })
-
-            let result = await response.json()
-            return result
+            },
+            body : JSON.stringify(body)
         })
+        log(await response.status)
+        let result = await response.json()
+        return result
+
     }
 
 

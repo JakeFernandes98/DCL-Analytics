@@ -7,16 +7,16 @@
 <b>Signature:</b>
 
 ```typescript
-trigger_offer(segment: Segments): void;
+trigger_offer(segment: string): Promise<any>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  segment | Segments |  |
+|  segment | string |  |
 
 <b>Returns:</b>
 
-void
+Promise&lt;any&gt;
 
