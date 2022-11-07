@@ -1,3 +1,5 @@
+import { gdpr } from "./utils"
+
 export class AdobeTarget {
     client: string
     sessionId: string
@@ -11,42 +13,47 @@ export class AdobeTarget {
     }
 
     async trigger_offer(segment: string){
-        let url = 'https://unileverapac.tt.omtrdc.net/rest/v1/delivery?client='+this.client+'&sessionId='+this.sessionId
+        if (gdpr){
+            let url = 'https://unileverapac.tt.omtrdc.net/rest/v1/delivery?client='+this.client+'&sessionId='+this.sessionId
 
-        let body: DeliveryBody = {
-            // id: {
-            //     marketingCloudVisitorId: this.publicKey
-            // },
-            context: {
-                channel: 'web'
-            },
-            property: {
-                token: "5372887c-6d22-52c0-0b5c-43d2643d2afb"
-            },
-            execute: {
-                mboxes : [
-                    {
-                        "name": "api_charter1",
-                        "index": 1,
-                        "parameters":{"id":segment}
-        
-                   }
-                ]
+            let body: DeliveryBody = {
+                // id: {
+                //     marketingCloudVisitorId: this.publicKey
+                // },
+                context: {
+                    channel: 'web'
+                },
+                property: {
+                    token: "5372887c-6d22-52c0-0b5c-43d2643d2afb"
+                },
+                execute: {
+                    mboxes : [
+                        {
+                            "name": "api_charter1",
+                            "index": 1,
+                            "parameters":{"id":segment}
+            
+                       }
+                    ]
+                }
+    
             }
 
+            let response = await fetch(url,{
+                method: 'POST',
+                headers: {
+    
+                },
+                body : JSON.stringify(body)
+            })
+            log(await response.status)
+            let result = await response.json()
+            return result
         }
+        
 
     
-        let response = await fetch(url,{
-            method: 'POST',
-            headers: {
-
-            },
-            body : JSON.stringify(body)
-        })
-        log(await response.status)
-        let result = await response.json()
-        return result
+        
 
     }
 

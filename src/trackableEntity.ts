@@ -1,5 +1,6 @@
 import { TrackableAPI } from "./api"
 import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from "./metadata"
+import { gdpr } from "./utils"
 // @Entity('exampleComponent')
 
 /**
@@ -30,7 +31,9 @@ export class TrackableEntity extends Entity {
      * @public
      */
     enableTracking(api: TrackableAPI){
-        let body: FullTrackableMetadata = joinMetadata(this.metadata, this.entityId, 'INTERACT', new Date())
-        api.req(body)
+        if (gdpr){
+            let body: FullTrackableMetadata = joinMetadata(this.metadata, this.entityId, 'INTERACT', new Date())
+            api.req(body)
+        }
     }
 }

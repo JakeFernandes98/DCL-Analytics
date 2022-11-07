@@ -1,5 +1,6 @@
 import { TrackableAPI } from "./api";
 import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from "./metadata";
+import { gdpr } from "./utils";
 
 export class TrackableCamera {
 
@@ -20,7 +21,9 @@ export class TrackableCamera {
      * @public
      */
     addEntity(entity:Entity, tag: BaseTrackableMetadata, entityId: string){
-        this.raySystem.addEntity(entity,tag,entityId)
+        if(gdpr){
+            this.raySystem.addEntity(entity,tag,entityId)
+        }
     }
 
     /**
@@ -30,7 +33,9 @@ export class TrackableCamera {
      * @public
      */
     removeEntity(entity:Entity){
-        this.raySystem.removeEntity(entity)
+        if(gdpr){
+            this.raySystem.removeEntity(entity)
+        }
     }
 
 }
@@ -64,16 +69,18 @@ class RaycastingSystem implements ISystem {
         PhysicsCast.instance.hitAll(
             ray,
             (e) => {
-                if (e.didHit){
-                    for (let ent of e.entities){
-                        let entityuuid:string = ent.entity.entityId.charAt(0) + String.fromCharCode(ent.entity.entityId.charCodeAt(1)-3)
-                        if (this.entities.hasOwnProperty(entityuuid)){
-                            this.entitiesCount[entityuuid] = this.entitiesCount[entityuuid] + dt
+                if (gdpr){
+                    if (e.didHit){
+                        for (let ent of e.entities){
+                            let entityuuid:string = ent.entity.entityId.charAt(0) + String.fromCharCode(ent.entity.entityId.charCodeAt(1)-3)
+                            if (this.entities.hasOwnProperty(entityuuid)){
+                                this.entitiesCount[entityuuid] = this.entitiesCount[entityuuid] + dt
+                            }
                         }
+                    } else {
+                        this.sendAPI()
                     }
-                } else {
-                    this.sendAPI()
-                }
+                } 
             }
         )
     }

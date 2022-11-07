@@ -2,7 +2,7 @@
 import { TriggerComponent,TriggerBoxShape } from '@dcl/ecs-scene-utils'
 import { TrackableAPI } from './api'
 import { BaseTrackableMetadata, FullTrackableMetadata, joinMetadata } from './metadata'
-import { Timer } from './utils'
+import { gdpr, Timer } from './utils'
 
 
 /**
@@ -39,33 +39,41 @@ export class TrackableArea extends Entity{
         let timerSystem
         let startTime
 
-        this.addComponent(
-            new TriggerComponent(
-                new TriggerBoxShape(new Vector3(xSize,ySize,zSize), Vector3.Zero()),
-                {
-                    onCameraEnter: () => {
-                        timerSystem = new Timer()
-                        startTime = new Date()
-                        this.triggerEnterAPI(api, startTime)
-                        engine.addSystem(timerSystem)
-                    },
-                    onCameraExit: () => {
-                        this.triggerExitAPI(api, startTime, timerSystem.timer)
-                        engine.removeSystem(timerSystem)
-                    },
-                }
+        if (gdpr) {
+            this.addComponent(
+                new TriggerComponent(
+                    new TriggerBoxShape(new Vector3(xSize,ySize,zSize), Vector3.Zero()),
+                    {
+                        onCameraEnter: () => {
+                            timerSystem = new Timer()
+                            startTime = new Date()
+                            this.triggerEnterAPI(api, startTime)
+                            engine.addSystem(timerSystem)
+                        },
+                        onCameraExit: () => {
+                            this.triggerExitAPI(api, startTime, timerSystem.timer)
+                            engine.removeSystem(timerSystem)
+                        },
+                    }
+                )
             )
-        )
+        }
+
         
     }
 
     private triggerExitAPI(api: TrackableAPI, start:Date, duration:double){
-        let fullMetadata: FullTrackableMetadata = joinMetadata(this.metadata, "", "EXIT", start, duration)
-        api.req(fullMetadata)
+        if (gdpr){
+            let fullMetadata: FullTrackableMetadata = joinMetadata(this.metadata, "", "EXIT", start, duration)
+            api.req(fullMetadata)
+        }
+        
     }
 
     private triggerEnterAPI(api: TrackableAPI, start:Date){
-        let fullMetadata: FullTrackableMetadata = joinMetadata(this.metadata, "", "ENTER", start)
-        api.req(fullMetadata)
+        if (gdpr){
+            let fullMetadata: FullTrackableMetadata = joinMetadata(this.metadata, "", "ENTER", start)
+            api.req(fullMetadata)
+        }
     }
 }

@@ -46,6 +46,19 @@ export interface FullTrackableMetadata extends BaseTrackableMetadata {
     timestamp: Date;
 }
 
+// @public (undocumented)
+export class GDPRNotice {
+    constructor(parcelx: number, parcelz: number, debug?: boolean, title?: string, notice?: string, gdprNoticeLink?: string);
+    // (undocumented)
+    gdprNoticeLink: string;
+    // (undocumented)
+    hasChosen: boolean;
+    // (undocumented)
+    notice: string;
+    // (undocumented)
+    title: string;
+}
+
 // @public
 export function joinMetadata(base: BaseTrackableMetadata, entityId: string, action: string, timestamp?: Date, duration?: number): FullTrackableMetadata;
 

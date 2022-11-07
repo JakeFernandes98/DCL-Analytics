@@ -9,6 +9,7 @@
 |  Class | Description |
 |  --- | --- |
 |  [AdobeTarget](./dcl-analytics-tracker.adobetarget.md) |  |
+|  [GDPRNotice](./dcl-analytics-tracker.gdprnotice.md) |  |
 |  [Timer](./dcl-analytics-tracker.timer.md) |  |
 |  [TrackableAPI](./dcl-analytics-tracker.trackableapi.md) |  |
 |  [TrackableArea](./dcl-analytics-tracker.trackablearea.md) | Allows you to track users entering the area, and how long they are spending within the area |
