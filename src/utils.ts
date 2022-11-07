@@ -1,5 +1,5 @@
-// import { TriggerComponent, TriggerBoxShape } from "@dcl/ecs-scene-utils"
-// import { ButtonStyles, CustomPrompt, PromptStyles } from "@dcl/ui-scene-utils"
+import { TriggerComponent, TriggerBoxShape } from "@dcl/ecs-scene-utils"
+import { ButtonStyles, CustomPrompt, PromptStyles } from "@dcl/ui-scene-utils"
 
 export class Timer implements ISystem {
     timer: double
@@ -36,59 +36,59 @@ export class GDPRNotice {
             position: new Vector3((parcelx*16)/2, maxHeight/2 ,(parcelz*16)/2)
         }))
 
-        // entity.addComponent(
-        //     new TriggerComponent(
-        //         new TriggerBoxShape(new Vector3(parcelx*16,maxHeight,parcelz*16), Vector3.Zero()),
-        //         {
-        //             onCameraEnter: () => {
-        //                 if(!this.hasChosen){
-                            // let prompt = new CustomPrompt(PromptStyles.DARK)
-                            // prompt.addText(this.title, 0, 130, Color4.Red(), 30)
-                            // prompt.addText(this.notice, 0, 100)
+        entity.addComponent(
+            new TriggerComponent(
+                new TriggerBoxShape(new Vector3(parcelx*16,maxHeight,parcelz*16), Vector3.Zero()),
+                {
+                    onCameraEnter: () => {
+                        if(!this.hasChosen){
+                            let prompt = new CustomPrompt(PromptStyles.DARK)
+                            prompt.addText(this.title, 0, 130, Color4.Red(), 30)
+                            prompt.addText(this.notice, 0, 100)
                             
 
-                            // let checkBox = prompt.addCheckbox("Don't show again", -80, 50)
+                            let checkBox = prompt.addCheckbox("Don't show again", -80, 50)
 
-                            // let button1 = prompt.addButton(
-                            // 'Accept',
-                            // 0,
-                            // -30,
-                            // () => {
-                            //     this.hasChosen = true
-                            //     gdpr = true
-                            //     log('Yes')
-                            //     prompt.hide()
-                            // },
-                            // ButtonStyles.E
-                            // )
+                            let button1 = prompt.addButton(
+                            'Accept',
+                            0,
+                            -30,
+                            () => {
+                                this.hasChosen = true
+                                gdpr = true
+                                log('Yes')
+                                prompt.hide()
+                            },
+                            ButtonStyles.E
+                            )
 
-                            // let button2 = prompt.addButton(
-                            // 'Decline',
-                            // 0,
-                            // -90,
-                            // () => {
-                            //     this.hasChosen = true
-                            //     log('No')
-                            //     prompt.hide()
-                            // },
-                            // ButtonStyles.F
-                            // )
+                            let button2 = prompt.addButton(
+                            'Decline',
+                            0,
+                            -90,
+                            () => {
+                                this.hasChosen = true
+                                log('No')
+                                prompt.hide()
+                            },
+                            ButtonStyles.F
+                            )
 
-                            // let button3 = prompt.addButton(
-                            //     'Learn more',
-                            //     0,
-                            //     -150,
-                            //     () => {
-                            //         openExternalURL(this.gdprNoticeLink)
-                            //     },
-                            //     ButtonStyles.ROUNDWHITE
-                            // )
-        //                 }
-        //             },
-        //             enableDebug: debug
-        //         }
-        //     )
-        // )
+                            let button3 = prompt.addButton(
+                                'Learn more',
+                                0,
+                                -150,
+                                () => {
+                                    openExternalURL(this.gdprNoticeLink)
+                                },
+                                ButtonStyles.ROUNDWHITE
+                            )
+                        }
+                    },
+                    enableDebug: debug
+                }
+            )
+        )
 
         engine.addEntity(entity)
 
