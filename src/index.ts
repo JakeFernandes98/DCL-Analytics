@@ -8,5 +8,5 @@ import { AdobeTarget } from "./adobeTarget"
 import { GDPRNotice } from "./utils"
 
 export {
-  AdobeTarget, TrackableAPI, BaseTrackableMetadata, FullTrackableMetadata, joinMetadata, TrackableEntity, TrackableArea, Timer, TrackableCamera, GDPRNotice, gdpr
+  AdobeTarget, TrackableAPI, BaseTrackableMetadata, FullTrackableMetadata, joinMetadata, TrackableEntity, TrackableArea, Timer, TrackableCamera, GDPRNotice
 }
