@@ -1,5 +1,5 @@
 import { TriggerComponent, TriggerBoxShape } from "@dcl/ecs-scene-utils"
-import * as ui from '@dcl/ui-scene-utils'
+import { ButtonStyles, CustomPrompt, PromptStyles } from "@dcl/ui-scene-utils"
 
 export class Timer implements ISystem {
     timer: double
@@ -42,7 +42,7 @@ export class GDPRNotice {
                 {
                     onCameraEnter: () => {
                         if(!this.hasChosen){
-                            let prompt = new ui.CustomPrompt(ui.PromptStyles.DARK)
+                            let prompt = new CustomPrompt(PromptStyles.DARK)
                             prompt.addText(this.title, 0, 130, Color4.Red(), 30)
                             prompt.addText(this.notice, 0, 100)
                             
@@ -59,7 +59,7 @@ export class GDPRNotice {
                                 log('Yes')
                                 prompt.hide()
                             },
-                            ui.ButtonStyles.E
+                            ButtonStyles.E
                             )
 
                             let button2 = prompt.addButton(
@@ -71,7 +71,7 @@ export class GDPRNotice {
                                 log('No')
                                 prompt.hide()
                             },
-                            ui.ButtonStyles.F
+                            ButtonStyles.F
                             )
 
                             let button3 = prompt.addButton(
@@ -81,7 +81,7 @@ export class GDPRNotice {
                                 () => {
                                     openExternalURL(this.gdprNoticeLink)
                                 },
-                                ui.ButtonStyles.ROUNDWHITE
+                                ButtonStyles.ROUNDWHITE
                             )
                         }
                     },
