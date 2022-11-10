@@ -30,5 +30,5 @@ export declare class TrackableEntity extends Entity
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [enableTracking(api)](./dcl-analytics-tracker.trackableentity.enabletracking.md) |  | Allows clicks to be tracked. Method must be called within the event handler component (e.g. OnPointerUp, OnPointerDown) |
+|  [triggerEvent(api)](./dcl-analytics-tracker.trackableentity.triggerevent.md) |  | Allows clicks to be tracked. Method must be called within the event handler component (e.g. OnPointerUp, OnPointerDown) |
 

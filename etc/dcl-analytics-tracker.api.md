@@ -105,11 +105,11 @@ export class TrackableCamera {
 // @public
 export class TrackableEntity extends Entity {
     constructor(metadata: BaseTrackableMetadata, entityId: string);
-    enableTracking(api: TrackableAPI): void;
     // (undocumented)
     entityId: string;
     // (undocumented)
     metadata: BaseTrackableMetadata;
+    triggerEvent(api: TrackableAPI): void;
 }
 
 // (No @packageDocumentation comment for this package)

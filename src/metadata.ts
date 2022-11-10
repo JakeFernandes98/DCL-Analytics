@@ -61,7 +61,6 @@ export function joinMetadata(base: BaseTrackableMetadata, entityId: string, acti
        userGuest : base.userGuest,
        entityId : entityId,
        action : action,
-       timestamp : timestamp,
     } as FullTrackableMetadata
 
 

@@ -136,6 +136,21 @@ executeTask(async () => {
    QRPlane3.addComponentOrReplace(QRMaterial3)
 })
 ```
+
+### Data Structure
+
+Column Name | Required? | Defined in Metadata? | Description
+---|---|---|---
+parcelId | Yes | Yes | Unique identifier for the parcel
+sectionId | Yes | Yes | Unique identifier for the section of the experience (e.g floor, minigame)
+userId | Yes | Yes | Unique identifier for the user (public key if signed in)
+userName | Yes | Yes | User display name
+userGuest | Yes | Yes | Whether the user is signed in
+entityId | Yes | No | Unique identifier for the entity
+action | Yes | No | User action (ENTER, EXIT, INTERACT, VIEW)
+timestamp | Yes | No | Timestamp when the action happened
+duration | No | No | How long the action was performed for (applicable for VIEW and EXIT)
+
 ...
 
 ## Copyright info
