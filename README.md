@@ -1,18 +1,4 @@
-## SDK Library
-
-This project has the basics to start building your own library for using in Decentraland scenes.
-
-The libraries in the [Awesome Repository](https://github.com/decentraland-scenes/Awesome-Repository#Libraries) are available for all to use. We encourage you to create and share your own as well, we'd love to see the community grow and start sharing more reusable solutions to common problems through libraries!
-
-## Publish
-
-See [Create Libraries](https://docs.decentraland.org/development-guide/create-libraries/) for tips on how to design and develop your library, and for simple instructions for publishing it to NPM.
-
-Below is a template to help you craft documentation for your library, so others know how to use it.
-
-# MyAmazingLibrary Documentation
-
-myAmazingLibrary includes helpful solutions for `< insert use case >` in a Decentraland scene.
+# DCL Library Documentation
 
 ## Install
 
@@ -21,53 +7,135 @@ To use any of the helpers provided by this library:
 1. Install it as an npm package. Run this command in your scene's project folder:
 
    ```
-   npm install myAmazingLibrary
+   npm install dcl-analytics-tracker
    ```
 
-2. Add this line at the start of your game.ts file, or any other TypeScript files that require it:
+2. Add this to in the path array in the tsconfig.json file
 
    ```ts
-   import * as magic from 'myAmazingLibrary'
+   "@dcl/dcl-analytics-tracker": [
+        "./node_modules/dcl-analytics-tracker/dist/index.d.ts"
+      ],
    ```
 
 ## Usage
 
-### < use case 1 >
+### Initialising the API
 
-To do `< insert use case >`, add the `MyAmazingComponent` component to the entity.
-
-MyAmazingComponent requires two arguments when being constructed:
-
-- `start`: Vector3 for the start position
-- `duration`: duration (in seconds)
-
-MyAmazingComponent can optionally also take the following argument:
-
-- `color`: Color4 value for the color. If not provided, the default value is `Color4.Red()`
-
-This example uses MyAmazingComponent to do `< insert use case >` to an entity over a period of 2 seconds:
+In order to send data to the Unilever APIs, you must initialise an API object with the appropriate URL
 
 ```ts
-import * as magic from 'myAmazingLibrary'
+import {TrackableAPI} from 'dcl-analytics-tracker'
 
-// Create entity
-const box = new Entity()
-
-// Give entity a shape and transform
-box.addComponent(new BoxShape())
-box.addComponent(new Transform())
-
-// Move entity
-box.addComponent(new magic.MyAmazingComponent(new Vector3(1, 1, 1), 2))
-
-// Add entity to engine
-engine.addEntity(box)
+let api: TrackableAPI = new TrackableAPI('http://127.0.0.1:8080/add')
 ```
 
-> Note: Be aware that if < other use case >, MyAmazingComponent will < do some other thing >.
+### Initialising metadata
 
-### < use case 2 >
+We can define the data we want to set through a metadata object. This should be created in each floor/section of the experience as appropriate. Fetching user data is asynchronous and may take a while, the recommendation is that you pull player data as soon as the user enters the parcel, then re-use the playerInfo variable everytime you want to create a new Metadata set
 
+```ts
+import {BaseTrackableMetadata} from 'dcl-analytics-tracker'
+
+let playerInfo
+executeTask(async () => {
+   playerInfo = await getUserData()
+})
+let isUserGuest = !(playerInfo.hasConnectedWeb3)
+
+let metadata:BaseTrackableMetadata = {
+  parcelId: "3",
+  sectionId: "2",
+  userId: isUserGuest ? playerInfo.userId : playerInfo.publicKey,
+  userName: playerInfo.displayName,
+  userGuest: isUserGuest
+}
+```
+
+### Tracking Interaction with Entities
+
+This allows you to track events every time a user clicks (interacts) with an entity in the experience. This is a replacement of the usual way of creating entities.
+
+Standard way of creating an Entity:
+
+```ts
+const box = new Entity();
+box.addComponent(new BoxShape())
+box.addComponent(new Transform({
+  position: new Vector3(8, 0, 12),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(2, 5, 2)
+}))
+
+box.addComponent(new OnPointerDown((e) => {
+  log("clicked")
+}))
+```
+
+Creating an entity which can be tracked:
+
+```ts
+import {TrackableEntity} from 'dcl-analytics-tracker'
+
+const box = new TrackableEntity(metadata, "1");
+box.addComponent(new BoxShape())
+box.addComponent(new Transform({
+  position: new Vector3(8, 0, 12),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(2, 5, 2)
+}))
+
+box.addComponent(new OnPointerDown((e) => {
+  log("clicked")
+  box.triggerEvent(api)
+}))
+```
+
+### Tracking Views and View Time on Entities
+
+This allows you to track how long users spend looking at an entity. This could be useful for personalisation and advert billboards in the scene.
+
+```ts
+let trackingCamera = new TrackableCamera(api)
+let billboard = new Entity()
+//... setting up the buildboard's image and position
+
+trackingCamera.addEntity(billboard, metadata, "name for the entity/ad")
+```
+
+
+### Using Adobe Target
+
+Currently Adobe Target can be used to served image URLs and text. This requires defining a set of segments and the matching url/text responses. Here is an example where we pull data based on how long the user has looked at different adverts and serve another advert based on it.
+
+```ts
+executeTask(async () => {
+   //fetching advert data
+   let userId = metadata.userId
+   let response = await fetch("http://127.0.0.1:8080/get/"+userId)
+   let json = await response.json()
+   
+   //base segment
+   let segment = "icecream"
+
+   //comparing how long the user has looked at a Ben & Jerry's advert vs a Skincare advert
+   if(await json["B&J"] > await json["Skin"]){
+      segment = "icecream"
+   }else{
+      segment = "skincare"
+   }
+   
+   //triggering an adobe target offer using that segment
+   let res = await adobeTarget.trigger_offer(segment)
+   
+   //pulling the image URL from the adobe Target response (see Adobe Target API documentation for more information)
+   let imageUri = res["execute"]["mboxes"][0]["options"][0]["content"]
+
+   //setting the image for a billboard
+   QRMaterial3.albedoTexture = new Texture(imageUri)
+   QRPlane3.addComponentOrReplace(QRMaterial3)
+})
+```
 ...
 
 ## Copyright info

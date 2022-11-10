@@ -21,9 +21,7 @@ export class TrackableCamera {
      * @public
      */
     addEntity(entity:Entity, tag: BaseTrackableMetadata, entityId: string){
-        if(gdpr){
-            this.raySystem.addEntity(entity,tag,entityId)
-        }
+        this.raySystem.addEntity(entity,tag,entityId)
     }
 
     /**
@@ -33,9 +31,7 @@ export class TrackableCamera {
      * @public
      */
     removeEntity(entity:Entity){
-        if(gdpr){
-            this.raySystem.removeEntity(entity)
-        }
+        this.raySystem.removeEntity(entity)
     }
 
 }
@@ -66,10 +62,10 @@ class RaycastingSystem implements ISystem {
     update(dt: number){
         let ray: Ray = PhysicsCast.instance.getRayFromCamera(30)
   
-        PhysicsCast.instance.hitAll(
-            ray,
-            (e) => {
-                if (gdpr){
+        if (gdpr){
+            PhysicsCast.instance.hitAll(
+                ray,
+                (e) => {
                     if (e.didHit){
                         for (let ent of e.entities){
                             let entityuuid:string = ent.entity.entityId.charAt(0) + String.fromCharCode(ent.entity.entityId.charCodeAt(1)-3)
@@ -80,9 +76,9 @@ class RaycastingSystem implements ISystem {
                     } else {
                         this.sendAPI()
                     }
-                } 
-            }
-        )
+                }
+            )
+        }
     }
 
     sendAPI(){

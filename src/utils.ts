@@ -20,16 +20,16 @@ export var gdpr: boolean = false
 export class GDPRNotice {
 
     title: string = "GDPR Notice"
-    notice: string = "Your may use your anonymous data to improve your experience here and in other experiences to tailor messages and to display ads to your interests"
+    notice: string = "We may use your anonymous data to improve your \n experience here and in other experiences to tailor \n messages and to display ads to your interests"
     gdprNoticeLink: string = "https://www.unilevernotices.com/cookie-notices/united-kingdom-english.html"
     hasChosen: boolean = false
 
     constructor(parcelx: number, parcelz: number, debug: boolean = false, title?: string, notice?: string, gdprNoticeLink?: string){
-        this.title = title
-        this.notice = notice
-        this.gdprNoticeLink = gdprNoticeLink
+        // if (typeof title != undefined) this.title = title
+        // if (typeof notice != undefined) this.notice = notice
+        // if (typeof gdprNoticeLink != undefined) this.gdprNoticeLink = gdprNoticeLink
 
-        const maxHeight = Math.round(Math.log(parcelx*parcelz)/Math.log(2))
+        const maxHeight = Math.round(20*Math.log(parcelx*parcelz+1)/Math.log(2))
 
         const entity = new Entity()
         entity.addComponent(new Transform({
@@ -44,15 +44,15 @@ export class GDPRNotice {
                         if(!this.hasChosen){
                             let prompt = new CustomPrompt(PromptStyles.DARK)
                             prompt.addText(this.title, 0, 130, Color4.Red(), 30)
-                            prompt.addText(this.notice, 0, 100)
+                            prompt.addText(this.notice, 0, 80)
                             
 
-                            let checkBox = prompt.addCheckbox("Don't show again", -80, 50)
+                            let checkBox = prompt.addCheckbox("Don't show again", -80, 20)
 
                             let button1 = prompt.addButton(
                             'Accept',
                             0,
-                            -30,
+                            -40,
                             () => {
                                 this.hasChosen = true
                                 gdpr = true
@@ -77,7 +77,7 @@ export class GDPRNotice {
                             let button3 = prompt.addButton(
                                 'Learn more',
                                 0,
-                                -150,
+                                -140,
                                 () => {
                                     openExternalURL(this.gdprNoticeLink)
                                 },

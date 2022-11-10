@@ -30,7 +30,7 @@ export class TrackableEntity extends Entity {
      * @param api - A defined API
      * @public
      */
-    enableTracking(api: TrackableAPI){
+    triggerEvent(api: TrackableAPI){
         if (gdpr){
             let body: FullTrackableMetadata = joinMetadata(this.metadata, this.entityId, 'INTERACT', new Date())
             api.req(body)
